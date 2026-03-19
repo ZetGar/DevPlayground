@@ -8,15 +8,13 @@ import Link from "next/link";
 import Button from "./components/ui/Button/Button";
 import UserCard from "./components/ui/UserCard/UserCard";
 
-
 export default function Home() {
   const { users, loading, error, fetchUsers } = useUsers();
   
 
   useEffect(() => {
     fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <div className={styles.dashboard}>
