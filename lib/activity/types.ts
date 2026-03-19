@@ -1,6 +1,8 @@
-export type Event = {
+export type EventType = "click" | "login";
+
+export type UserEvent = {
   userId: string;
-  type: string;
+  type: EventType;
   timestamp: number;
 };
 
@@ -16,6 +18,5 @@ export type User = {
 /* API에서 오는 원본 타입 */
 export type ApiUser = {
   userId: string;
-  status: string; // 아직 정제 안됨
-  lastActive: number;
+  events: UserEvent[];
 };
