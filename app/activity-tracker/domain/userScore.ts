@@ -5,7 +5,7 @@ const EVENT_WEIGHT: Record<EventType, number> = {
   login: 3,
 };
 
-const LAMBDA = 0.0001;
+const LAMBDA = 0.0000005;
 
 export function calculateScore(events: UserEvent[]): number {
   const now = Date.now();

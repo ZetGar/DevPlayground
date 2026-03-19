@@ -1,9 +1,7 @@
 "use client";
 
-import { ApiUser } from "@/lib/activity/types";
 import { useState, useCallback } from "react";
 import { User } from "../domain/user";
-import { toUser } from "../domain/userMapper";
 
 export function useUsers() {
   const [users, setUsers] = useState<User[]>([]);
@@ -16,11 +14,9 @@ export function useUsers() {
     setError(null);
 
     const res = await fetch("/api/activity/users");
-    const data: ApiUser[] = await res.json();
+    const data: User[] = await res.json();
 
-    const mapped = data.map(toUser);
-
-    setUsers(mapped);
+    setUsers(data);
   } catch {
     setError("데이터 불러오기 실패");
   } finally {

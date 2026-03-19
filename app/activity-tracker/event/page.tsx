@@ -10,16 +10,22 @@ export default function EventPage() {
   const [userId, setUserId] = useState("userA");
 
   const sendEvent = async (type: string) => {
-    await fetch("/api/activity/event", {
-      method: "POST",
-      body: JSON.stringify({
-        userId,
-        type,
-      }),
-    });
+  const res = await fetch("/api/activity/event", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // 🔥 필수
+    },
+    body: JSON.stringify({
+      userId,
+      type,
+    }),
+  });
 
-    alert("이벤트 전송됨!");
-  };
+  const data = await res.json();
+  console.log("response:", data);
+
+  alert("이벤트 전송됨!");
+};
 
   return (
     <div className={styles.dashboard}>

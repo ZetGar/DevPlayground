@@ -1,3 +1,8 @@
-import { Event } from "./types";
+import { UserEvent } from "./types";
 
-export const events: Event[] = [];
+const globalForEvents = globalThis as unknown as {
+  events: UserEvent[];
+};
+
+export const events =
+  globalForEvents.events ?? (globalForEvents.events = []);

@@ -41,8 +41,9 @@
 }
 
 .time {
-  font-size: 12px;
+  margin-right: 10px;
   color: #6b7280;
+  font-size: 12px;
 }
 
 .status {
