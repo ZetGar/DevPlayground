@@ -1,3 +1,5 @@
+import { Recommendation } from "@/app/activity-tracker/domain/recommendation";
+
 export type EventType = "click" | "login";
 
 export type UserEvent = {
@@ -13,6 +15,7 @@ export type User = {
   userId: string;
   status: UserStatus;
   lastActive: number;
+  recommendation: Recommendation;
 };
 
 /* API에서 오는 원본 타입 */

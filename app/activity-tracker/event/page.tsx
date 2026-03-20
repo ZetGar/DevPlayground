@@ -45,6 +45,8 @@ export default function EventPage() {
         <option value="userA">User A</option>
         <option value="userB">User B</option>
         <option value="userC">User C</option>
+        <option value="userD">User D</option>
+        <option value="userE">User E</option>
       </select>
 
       <div className={styles.eventButtons}>
