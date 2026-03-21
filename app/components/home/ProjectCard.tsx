@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./ProjectCard.module.css";
-import { Project } from "@/types/project";
+import { Project } from "../../types/project";
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
