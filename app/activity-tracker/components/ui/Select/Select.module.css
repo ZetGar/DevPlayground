@@ -1,0 +1,70 @@
+.wrapper {
+  position: relative;
+  width: 200px;
+}
+
+/* 선택된 영역 */
+.selectBox {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.selectBox:hover {
+  border-color: #6366f1;
+}
+
+/* 화살표 */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.up {
+  transform: rotate(180deg);
+}
+
+/* 드롭다운 */
+.dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* 옵션 */
+.option {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.option:hover {
+  background: #f3f4f6;
+}
+
+/* 선택된 옵션 */
+.selected {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 500;
+}

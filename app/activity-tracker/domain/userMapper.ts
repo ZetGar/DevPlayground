@@ -2,6 +2,7 @@
 import { ApiUser } from "@/lib/activity/types";
 import { User } from "./user";
 import { getUserStatus } from "./userStatus";
+import { getRecommendation } from "./recommendation";
 
 export function toUser(apiUser: ApiUser): User {
   const events = apiUser.events;
@@ -11,5 +12,6 @@ export function toUser(apiUser: ApiUser): User {
     userId: apiUser.userId,
     lastActive: last?.timestamp ?? 0,
     status: getUserStatus(events),
+    recommendation: getRecommendation(events),    
   };
 }

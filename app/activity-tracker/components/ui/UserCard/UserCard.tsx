@@ -3,6 +3,7 @@ import styles from "./UserCard.module.css";
 import { formatTimeAgo } from "@/lib/utils/time";
 
 export default function UserCard({ userId, status, lastActive, recommendation }: User) {
+  
   return (
     <div className={styles.card}>
       <div className={styles.cardUser}>

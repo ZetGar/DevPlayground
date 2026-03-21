@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from "react";
 import { User } from "../domain/user";
+import { ApiUser } from "@/lib/activity/types";
+import { toUser } from "../domain/userMapper";
 
 export function useUsers() {
   const [users, setUsers] = useState<User[]>([]);
@@ -9,20 +11,23 @@ export function useUsers() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchUsers = useCallback(async () => {
-  try {
-    setLoading(true);
-    setError(null);
+    try {
+      setLoading(true); // ⭐ 항상
 
-    const res = await fetch("/api/activity/users");
-    const data: User[] = await res.json();
+      setError(null);
 
-    setUsers(data);
-  } catch {
-    setError("데이터 불러오기 실패");
-  } finally {
-    setLoading(false);
-  }
-}, []);
+      const res = await fetch("/api/activity/users");
+      const data: ApiUser[] = await res.json();
+
+      const mapped = data.map(toUser);
+
+      setUsers(mapped);
+    } catch {
+      setError("데이터 불러오기 실패");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   return { users, loading, error, fetchUsers };
 }

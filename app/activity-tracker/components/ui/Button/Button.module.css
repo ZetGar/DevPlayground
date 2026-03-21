@@ -14,7 +14,7 @@
 
 .secondary {
   width: fit-content;
-  margin: 0 0 0 auto;
+  margin: 0;
   padding: 8px 12px; /* 줄이기 */
   font-size: 14px;
   color: #111;

@@ -2,9 +2,9 @@
 
 import styles from "./../../styles/activityTraker.module.css"
 
-import Link from "next/link";
 import { useState } from "react";
 import Button from "../ui/Button/Button";
+import Select from "../ui/Select/Select";
 
 export default function EventPanel() {
   const [userId, setUserId] = useState("userA");
@@ -31,23 +31,19 @@ export default function EventPanel() {
     <div className={styles.eventpanel}>
       <h1>이벤트 생성</h1>
 
-      <Link href="/activity-tracker">
-        <Button>대시보드 바로가기</Button>
-      </Link>
-
       <div className={styles.container}>
       {/* 유저 선택 */}
-      <select
-        className={styles.select}
+      <Select
         value={userId}
-        onChange={(e) => setUserId(e.target.value)}
-      >
-        <option value="userA">User A</option>
-        <option value="userB">User B</option>
-        <option value="userC">User C</option>
-        <option value="userD">User D</option>
-        <option value="userE">User E</option>
-      </select>
+        onChange={setUserId}
+        options={[
+          { label: "User A", value: "userA" },
+          { label: "User B", value: "userB" },
+          { label: "User C", value: "userC" },
+          { label: "User D", value: "userD" },
+          { label: "User E", value: "userE" },
+        ]}
+      />
 
       <div className={styles.eventButtons}>
         <Button variant="yellow" onClick={() => sendEvent("login")}>

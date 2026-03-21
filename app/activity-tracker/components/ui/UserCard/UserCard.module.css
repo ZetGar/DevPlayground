@@ -1,19 +1,20 @@
 .card {
   display: flex;
   flex-direction: column;
-  max-width: 360px;
+  max-width: 520px;
   margin: 0 auto 16px;
   padding: 16px;
   text-align: left;
   background: white;
+  border: 1px solid rgba(0,0,0,0.04);
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .cardUser{
@@ -47,16 +48,14 @@
 }
 
 .time {
-  margin-right: 10px;
   color: #6b7280;
   font-size: 12px;
 }
 
 .status {
   display: inline-block;
-  padding: 6px 10px;
+  padding: 2px 8px;
   font-size: 10px;
-  font-weight: 600;
   border-radius: 8px;
 }
 
