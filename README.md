@@ -27,39 +27,72 @@
 
 ---
 
-## 🎯 핵심 흐름
+## 🔄 전체 시스템 흐름
 
-Event → State → Analytics → Action
+```
+[ 이벤트 발생 ]  →  [ 상태 계산 ]  →  [ 분석 / 추천 ]  →  [ 자동화 액션 ]
+  click / login      score + decay      Active/Idle/Churn    캠페인 / 알림
+  (Part 1)           (Part 1)           (Part 1)             (Part 2)
+```
 
 ---
 
 ## 🧩 프로젝트 구성
 
-### 1️⃣ Activity Tracker (Part 1)
+### 1️⃣ Activity Tracker (Part 1) — 완료
 
-- 이벤트 수집 (click, login)
-- 사용자 상태 계산 (Active / Idle / Churn)
-- 대시보드 시각화
+이벤트 데이터를 수집하고 사용자 상태를 실시간으로 계산·시각화하는 시스템
+
+| 기능 | 설명 |
+|------|------|
+| 이벤트 수집 | click / login 이벤트 발생 |
+| score 계산 | 가중치 × 시간 감쇠(decay) 적용 |
+| 상태 분류 | Active / Idle / Churn 자동 분류 |
+| 추천 생성 | score + 마지막 활동 시간 기반 추천 액션 |
+| 시각화 | 상태 분포 카드 + 분포 바 대시보드 |
 
 👉 `/activity-tracker`
 
 ---
 
-### 2️⃣ Behavior CRM (Part 2)
+### 2️⃣ Behavior CRM (Part 2) — 진행중
 
-- 사용자 세그먼트 관리
-- 자동화 트리거 (예: 이탈 사용자 알림)
-- 캠페인 실행 시스템
+Part 1의 상태 데이터를 기반으로 세그먼트를 생성하고 자동화 액션을 실행하는 CRM 시스템
 
-👉 `/crm-system` (예정)
+| 기능 | 설명 |
+|------|------|
+| 세그먼트 | 조건 기반 유저 그룹 생성 |
+| 자동화 트리거 | 상태 변화 감지 → 액션 자동 실행 |
+| 캠페인 빌더 | 조건 + 트리거 + 액션 연결 UI |
+| 실행 로그 | 캠페인 실행 결과 추적 |
+
+👉 `/crm-system`
 
 ---
 
 ## ⚙️ 설계 포인트
 
-- **Event-driven architecture**
-- **Domain 로직 분리**
-- **확장 가능한 구조 설계**
+**도메인 로직 분리**
+- UI와 비즈니스 로직을 완전히 분리 (`domain/` 폴더)
+- score 계산, 상태 분류, 추천 생성이 각각 독립적으로 동작
+
+**확장 가능한 구조**
+- Part 1의 상태 데이터가 Part 2의 세그먼트 · 캠페인 입력값으로 자연스럽게 연결
+- 이벤트 타입 추가 시 `EVENT_WEIGHT`만 수정하면 전체 로직에 반영
+
+**타입 안전성**
+- API 응답 타입(`ApiUser`)과 도메인 타입(`User`)을 분리하여 매핑
+- `UserStatus`, `EventType` 등 핵심 타입 명시적 정의
+
+---
+
+## 🛠️ 기술 스택
+
+| 기술 | 선택 이유 |
+|------|-----------|
+| Next.js + TypeScript | 도메인 로직을 타입 안전하게 설계하기 위해 |
+| Node.js REST API | 이벤트 저장 및 유저 상태 조회 |
+| CSS Module | 컴포넌트 스코프 스타일 관리 |
 
 ---
 
