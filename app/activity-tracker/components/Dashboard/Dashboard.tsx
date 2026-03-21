@@ -8,22 +8,34 @@ import { UserStatus } from "@/lib/activity/types";
 import Button from "../ui/Button/Button";
 import UserCard from "../ui/UserCard/UserCard";
 import Select from "../ui/Select/Select";
+
 export default function Dashboard() {
   const { users, loading, error, fetchUsers } = useUsers();
   const [filter, setFilter] = useState<"All" | UserStatus>("All");
   const [sort, setSort] = useState<"recent" | "status">("recent");
 
   useEffect(() => {
-  fetchUsers();
+    fetchUsers();
 
-  const interval = setInterval(() => {
-    if (!document.hidden) {
-      fetchUsers();
-    }
-  }, 3000);
+    const interval = setInterval(() => {
+      if (!document.hidden) {
+        fetchUsers();
+      }
+    }, 3000);
 
-  return () => clearInterval(interval);
-}, [fetchUsers]);
+    return () => clearInterval(interval);
+  }, [fetchUsers]);
+
+  // 3. 시각화용 상태별 카운트
+  const statusCount = useMemo(() => {
+    return {
+      Active: users.filter((u) => u.status === "Active").length,
+      Idle: users.filter((u) => u.status === "Idle").length,
+      Churn: users.filter((u) => u.status === "Churn").length,
+    };
+  }, [users]);
+
+  const total = users.length;
 
   const filteredUsers = useMemo(() => {
     if (filter === "All") return users;
@@ -48,6 +60,47 @@ export default function Dashboard() {
   return (
     <div className={styles.dashboard}>
       <h1>유저 상태 대시보드</h1>
+
+      {total > 0 && (
+        <div className={styles.statsSection}>
+          <div className={styles.statsCards}>
+            {(["Active", "Idle", "Churn"] as UserStatus[]).map((status) => (
+              <div
+                key={status}
+                className={`${styles.statCard} ${styles[`stat${status}`]}`}
+                onClick={() => setFilter(status)}
+                role="button"
+              >
+                <span className={styles.statCount}>{statusCount[status]}</span>
+                <span className={styles.statLabel}>{status}</span>
+                <span className={styles.statPercent}>
+                  {total > 0
+                    ? Math.round((statusCount[status] / total) * 100)
+                    : 0}
+                  %
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.distributionBar}>
+            {(["Active", "Idle", "Churn"] as UserStatus[]).map((status) => {
+              const pct =
+                total > 0
+                  ? Math.round((statusCount[status] / total) * 100)
+                  : 0;
+              return pct > 0 ? (
+                <div
+                  key={status}
+                  className={`${styles.barSegment} ${styles[`bar${status}`]}`}
+                  style={{ width: `${pct}%` }}
+                  title={`${status}: ${pct}%`}
+                />
+              ) : null;
+            })}
+          </div>
+        </div>
+      )}
 
       <div className={styles.buttonGroup}>
         <div className={styles.controls}>
@@ -80,23 +133,14 @@ export default function Dashboard() {
       </div>
 
       <div>
-        {/* 최초 로딩 */}
         {loading && users.length === 0 && <p>로딩 중...</p>}
-
-        {/* 업데이트 중 (데이터 있을 때) */}
         {loading && users.length > 0 && (
           <p className={styles.updating}>업데이트 중...</p>
         )}
-
-        {/* 에러 */}
         {error && <p style={{ color: "red" }}>{error}</p>}
-
-        {/* 빈 상태 */}
         {!loading && users.length === 0 && (
           <p className={styles.empty}>유저 데이터가 없습니다</p>
         )}
-
-        {/* 리스트 */}
         {sortedUsers.map((u) => (
           <UserCard key={u.userId} {...u} />
         ))}
