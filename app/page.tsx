@@ -1,25 +1,14 @@
-import Link from "next/link";
+import { projects } from "./data/projects";
+import ProjectCard from "./components/home/ProjectCard";
 
 export default function Home() {
   return (
-    <div style={{ padding: 20 }}>
+    <div>
       <h1>Dev Playground</h1>
 
-      <ul>
-        <li>
-          <Link href="/activity-tracker">
-            <div style={{
-              padding: "12px 16px",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              marginBottom: "10px",
-              cursor: "pointer"
-            }}>
-              Activity Tracker
-            </div>
-          </Link>
-        </li>
-      </ul>
+      {projects.map((project) => (
+        <ProjectCard key={project.title} project={project} />
+      ))}
     </div>
   );
 }
