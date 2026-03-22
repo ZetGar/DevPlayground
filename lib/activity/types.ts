@@ -1,6 +1,6 @@
 import { Recommendation } from "@/app/activity-tracker/domain/recommendation";
 
-export type EventType = "click" | "login";
+export type EventType = "click" | "login" | "purchase" | "scroll" | "search";
 
 export type UserEvent = {
   userId: string;
