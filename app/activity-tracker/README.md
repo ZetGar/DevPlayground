@@ -122,3 +122,15 @@ app/activity-tracker/
 이 프로젝트는 **Part 2 — Behavior CRM**의 기반 데이터로 활용됩니다.
 
 > Active / Idle / Churn 상태 데이터 → 세그먼트 생성 → 자동화 캠페인 실행
+
+## 🧪 테스트
+
+도메인 핵심 로직을 단위 테스트로 검증했습니다.
+
+| 테스트 대상 | 설명 |
+|------------|------|
+| `userScore.test.ts` | score 계산 및 시간 감쇠 로직 검증 |
+| `userStatus.test.ts` | Active / Idle / Churn 상태 분류 경계값 검증 |
+```bash
+npm run test
+```
