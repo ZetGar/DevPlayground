@@ -7,7 +7,7 @@ import Button from "../ui/Button/Button";
 import Select from "../ui/Select/Select";
 
 export default function EventPanel() {
-  const [userId, setUserId] = useState("userA");
+  const [userId, setUserId] = useState("user-a");
 
   const sendEvent = async (type: string) => {
   const res = await fetch("/api/activity/event", {
@@ -37,11 +37,11 @@ export default function EventPanel() {
         value={userId}
         onChange={setUserId}
         options={[
-          { label: "User A", value: "userA" },
-          { label: "User B", value: "userB" },
-          { label: "User C", value: "userC" },
-          { label: "User D", value: "userD" },
-          { label: "User E", value: "userE" },
+          { label: "User A", value: "user-a" },
+          { label: "User B", value: "user-b" },
+          { label: "User C", value: "user-c" },
+          { label: "User D", value: "user-d" },
+          { label: "User E", value: "user-e" },
         ]}
       />
 
