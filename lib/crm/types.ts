@@ -47,6 +47,8 @@ export type ExecutionLog = {
   campaignId: string;
   executedAt: number;
   result: ExecutionResult;
+  beforeStatus: UserStatus;
+  afterStatus?: UserStatus; 
 };
 
 export type CreateSegmentRequest = Omit<Segment, "id" | "createdAt">;

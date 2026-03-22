@@ -10,7 +10,7 @@
   margin-bottom: 20px;
 }
 
-/* 요약 카드 — Part1 statsCards와 동일 구조 */
+/* 요약 카드 */
 .summary {
   display: flex;
   gap: 10px;
@@ -63,6 +63,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   overflow: hidden;
+  margin-bottom: 28px;
 }
 
 .tableHeader {
@@ -111,7 +112,6 @@
   color: #6b7280;
 }
 
-/* 결과 배지 — Part1 badge와 동일 */
 .badge {
   display: inline-block;
   padding: 3px 10px;
@@ -134,6 +134,319 @@
 .badge.failed {
   background: rgba(239, 68, 68, 0.12);
   color: #dc2626;
+}
+
+/* 📬 메시지함 */
+.inbox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inboxTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inboxTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.inboxHint {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 캠페인 목록 + 드로어 레이아웃 */
+.inboxLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.inboxLayout:has(.drawerPanel) {
+  grid-template-columns: 1fr 340px;
+}
+
+/* 캠페인 카드 */
+.campaignList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campaignCard {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.campaignCard:hover {
+  border-color: #c7d2fe;
+  background: #fafafa;
+}
+
+.campaignCardActive {
+  border-color: #6366f1;
+  background: #eef2ff;
+}
+
+.campaignCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.campaignName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.campaignUserCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.campaignCardBottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.campaignAction {
+  font-size: 12px;
+  color: #6b7280;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.campaignMessage {
+  font-size: 13px;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240px;
+}
+
+.convertedBadge {
+  font-size: 12px;
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: auto;
+}
+
+/* 사이드 드로어 패널 */
+.drawerPanel {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-self: start;
+  position: sticky;
+  top: 20px;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f8fafc;
+}
+
+.drawerTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px;
+}
+
+.drawerAction {
+  font-size: 12px;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.drawerClose {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.drawerClose:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.drawerMessage {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.drawerMessageLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.drawerMessageText {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin: 0;
+}
+
+/* 전환 요약 */
+.drawerConversion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafafa;
+}
+
+.drawerConversionStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.drawerConversionNum {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.drawerConversionNum.converted {
+  color: #16a34a;
+}
+
+.drawerConversionLabel {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.drawerConversionArrow {
+  color: #d1d5db;
+  font-size: 16px;
+}
+
+.drawerConversionRate {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* 유저 목록 */
+.drawerUsers {
+  padding: 16px;
+}
+
+.drawerUsersLabel {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.drawerUserRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  margin-bottom: 6px;
+}
+
+.drawerUserId {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.drawerStatusChange {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 상태 뱃지 */
+.statusBadge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.statusActive {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+
+.statusIdle {
+  background: rgba(234, 179, 8, 0.12);
+  color: #ca8a04;
+}
+
+.statusChurn {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+
+.statusArrow {
+  font-size: 11px;
+  color: #d1d5db;
+}
+
+.statusPending {
+  font-size: 11px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.convertedIcon {
+  font-size: 13px;
 }
 
 .empty {

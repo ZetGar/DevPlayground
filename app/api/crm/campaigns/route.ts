@@ -6,12 +6,10 @@ import { groupEventsByUser } from "@/lib/activity/logic";
 import { getUserStatus } from "@/app/activity-tracker/domain/userStatus";
 import { evaluateSegment } from "@/lib/crm/logic";
 
-// 캠페인 목록 조회
 export async function GET() {
   return NextResponse.json(campaigns);
 }
 
-// 캠페인 생성 + 즉시 실행
 export async function POST(req: NextRequest) {
   const body: CreateCampaignRequest = await req.json();
 
@@ -23,7 +21,6 @@ export async function POST(req: NextRequest) {
 
   campaigns.push(newCampaign);
 
-  // 세그먼트 조건에 맞는 유저에게 즉시 실행
   const grouped = groupEventsByUser(events);
 
   for (const user of grouped) {
@@ -40,6 +37,7 @@ export async function POST(req: NextRequest) {
       campaignId: newCampaign.id,
       executedAt: Date.now(),
       result: matched ? "success" : "skipped",
+      beforeStatus: status, // ← 실행 시점 상태 저장
     });
   }
 
