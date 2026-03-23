@@ -31,7 +31,7 @@ const projects = [
       "지원 데이터가 쌓일수록 AI가 합격 패턴을 분석하고 커리어 방향을 가이드해주는 스마트 채용 트래커",
     status: "진행중" as const,
     tags: ["Next.js", "TypeScript", "Supabase", "Claude API"],
-    path: "/job-log",
+    path: "/work-type",
     outputs: ["합격 패턴 분석", "커리어 방향 가이드", "AI 기업 추천"],
     color: "emerald",
   },
