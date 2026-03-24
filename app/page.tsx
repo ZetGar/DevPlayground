@@ -22,7 +22,7 @@ const projects = [
     tags: ["Next.js", "TypeScript", "Node.js", "Supabase"],
     path: "/crm-system",
     outputs: ["세그먼트 자동 분류", "캠페인 실행", "전환율 측정"],
-    color: "violet",
+    color: "blue",
   },
   {
     number: "Part 3",
@@ -34,6 +34,20 @@ const projects = [
     path: "/work-type",
     outputs: ["합격 패턴 분석", "커리어 방향 가이드", "AI 기업 추천"],
     color: "emerald",
+  },
+  {
+    number: "Side Project",
+    title: "일잘러 성향 테스트",
+    description: "실무 상황을 반영한 12가지 문항을 통해, 개인의 업무 스타일을 '크리에이터', '전략가' 등 8가지 페르소나로 분류하고 최적의 업무 환경을 제안합니다.",
+    status: "완성" as const,
+    tags: ["Next.js", "TypeScript", "html2canvas"],
+    path: "/work-type",
+    outputs: [
+      "8가지 업무 유형 상세 리포트", 
+      "강점·약점 기반의 커스터마이징 가이드", 
+      "개인별 최적의 업무 환경 추천"
+    ],
+    color: "violet",
   },
 ];
 
