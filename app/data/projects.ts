@@ -32,6 +32,20 @@ export const projects = [
     outputs: ["합격 패턴 분석", "커리어 방향 가이드", "AI 기업 추천"],
     color: "emerald",
   },
+    {
+    number: "Project Part 3",
+    title: "ThinkMap (AI 마인드맵)",
+    description: "두서없이 떠오르는 생각을 자유롭게 적으면, AI가 핵심 키워드와 관계를 분석하여 구조화된 마인드맵으로 자동 정리해주는 도구",
+    status: "진행중" as const,
+    tags: ["Next.js", "Claude API", "SVG"],
+    path: "/think-map",
+    outputs: [
+      "AI 기반 생각 구조화 JSON 파싱",
+      "SVG 노드 및 연결선 동적 렌더링",
+      "마인드맵 이미지 내보내기"
+    ],
+    color: "indigo",
+  },
   {
     number: "Side Project 1",
     title: "일잘러 성향 테스트",
@@ -47,31 +61,17 @@ export const projects = [
     color: "violet",
   },
   {
-    number: "Side Project 2",
-    title: "ThinkMap (AI 마인드맵)",
-    description: "두서없이 떠오르는 생각을 자유롭게 적으면, AI가 핵심 키워드와 관계를 분석하여 구조화된 마인드맵으로 자동 정리해주는 도구",
+    number: "Side Project 3",
+    title: "일잘러 생산성 툴킷",
+    description: "자주 쓰는 명령어와 템플릿을 관리하는 '치트시트'와 업무의 우선순위를 시각화하는 '아이젠하워 매트릭스'를 통합한 생산성 향상 도구",
     status: "진행중" as const,
-    tags: ["Next.js", "Claude API", "SVG"],
-    path: "/think-map",
+    tags: ["Next.js", "Supabase Auth", "dnd-kit"],
+    path: "/productivity-kit",
     outputs: [
-      "AI 기반 생각 구조화 JSON 파싱",
-      "SVG 노드 및 연결선 동적 렌더링",
-      "마인드맵 이미지 내보내기"
+      "사용자별 커스텀 치트시트 저장소",
+      "드래그 앤 드롭 업무 우선순위 관리",
+      "기기 간 실시간 데이터 동기화"
     ],
-    color: "indigo",
+    color: "sky",
   },
-  // {
-  //   number: "Side Project 3",
-  //   title: "일잘러 생산성 툴킷",
-  //   description: "자주 쓰는 명령어와 템플릿을 관리하는 '치트시트'와 업무의 우선순위를 시각화하는 '아이젠하워 매트릭스'를 통합한 생산성 향상 도구",
-  //   status: "기획" as const,
-  //   tags: ["Next.js", "Supabase Auth", "dnd-kit"],
-  //   path: "/productivity-kit",
-  //   outputs: [
-  //     "사용자별 커스텀 치트시트 저장소",
-  //     "드래그 앤 드롭 업무 우선순위 관리",
-  //     "기기 간 실시간 데이터 동기화"
-  //   ],
-  //   color: "sky",
-  // },
 ];
