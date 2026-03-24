@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import styles from "./ResultScreen.module.css";
-import { WorkType } from "../../data/workTypes";
+import { WorkType } from "../../data/types";
 
 type Props = {
   result: WorkType;
