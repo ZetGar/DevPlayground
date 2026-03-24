@@ -33,7 +33,7 @@ export const projects = [
     color: "emerald",
   },
     {
-    number: "Project Part 3",
+    number: "Project Part 4",
     title: "ThinkMap (AI 마인드맵)",
     description: "두서없이 떠오르는 생각을 자유롭게 적으면, AI가 핵심 키워드와 관계를 분석하여 구조화된 마인드맵으로 자동 정리해주는 도구",
     status: "진행중" as const,
@@ -44,7 +44,7 @@ export const projects = [
       "SVG 노드 및 연결선 동적 렌더링",
       "마인드맵 이미지 내보내기"
     ],
-    color: "indigo",
+    color: "blue",
   },
   {
     number: "Side Project 1",
@@ -61,7 +61,7 @@ export const projects = [
     color: "violet",
   },
   {
-    number: "Side Project 3",
+    number: "Side Project 2",
     title: "일잘러 생산성 툴킷",
     description: "자주 쓰는 명령어와 템플릿을 관리하는 '치트시트'와 업무의 우선순위를 시각화하는 '아이젠하워 매트릭스'를 통합한 생산성 향상 도구",
     status: "진행중" as const,
@@ -72,6 +72,6 @@ export const projects = [
       "드래그 앤 드롭 업무 우선순위 관리",
       "기기 간 실시간 데이터 동기화"
     ],
-    color: "sky",
+    color: "emerald",
   },
 ];
