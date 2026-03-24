@@ -39,7 +39,7 @@ export default function ResultScreen({ result, onRetry }: Props) {
         <div className={styles.emoji}>{result.emoji}</div>
         <h2 className={styles.name}>{result.name}</h2>
         <p className={styles.code}>{result.code}</p>
-        <p className={styles.summary}>"{result.summary}"</p>
+        <p className={styles.summary}>{result.summary}</p>
 
         <div className={styles.cards}>
           <div className={styles.card}>
