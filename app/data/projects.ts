@@ -36,7 +36,7 @@ export const projects = [
     number: "Side Project 1",
     title: "일잘러 성향 테스트",
     description: "실무 상황을 반영한 12가지 문항을 통해, 개인의 업무 스타일을 '크리에이터', '전략가' 등 8가지 페르소나로 분류하고 최적의 업무 환경을 제안",
-    status: "완성" as const,
+    status: "완료" as const,
     tags: ["Next.js", "TypeScript", "html2canvas"],
     path: "/work-type",
     outputs: [
