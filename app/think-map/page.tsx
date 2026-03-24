@@ -1,10 +1,8 @@
 "use client";
 
-import styles from "./styles/home.module.css";
-
 export default function page() {
   return (
-    <div className={styles.container}>
+    <div>
       ThinkMap ~ing
     </div>
   );
