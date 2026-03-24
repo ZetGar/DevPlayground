@@ -1,55 +1,6 @@
 import Link from "next/link";
 import styles from "./styles/home.module.css";
-
-const projects = [
-  {
-    number: "Part 1",
-    title: "Activity Tracker",
-    description:
-      "유저의 이벤트 데이터를 수집하고 시간 감쇠(decay) 기반 score를 계산하여 상태를 자동 분류하는 시스템",
-    status: "완료" as const,
-    tags: ["Next.js", "TypeScript", "Node.js", "REST API"],
-    path: "/activity-tracker",
-    outputs: ["Active / Idle / Churn 상태", "추천 액션 생성", "실시간 대시보드"],
-    color: "blue",
-  },
-  {
-    number: "Part 2",
-    title: "Behavior CRM",
-    description:
-      "Part 1의 상태 데이터를 기반으로 세그먼트를 생성하고 자동화 캠페인을 실행, 전환율을 추적하는 CRM 시스템",
-    status: "완료" as const,
-    tags: ["Next.js", "TypeScript", "Node.js", "Supabase"],
-    path: "/crm-system",
-    outputs: ["세그먼트 자동 분류", "캠페인 실행", "전환율 측정"],
-    color: "blue",
-  },
-  {
-    number: "Part 3",
-    title: "AI 커리어 트래커 (JobLog)",
-    description:
-      "지원 데이터가 쌓일수록 AI가 합격 패턴을 분석하고 커리어 방향을 가이드해주는 스마트 채용 트래커",
-    status: "진행중" as const,
-    tags: ["Next.js", "TypeScript", "Supabase", "Claude API"],
-    path: "/work-type",
-    outputs: ["합격 패턴 분석", "커리어 방향 가이드", "AI 기업 추천"],
-    color: "emerald",
-  },
-  {
-    number: "Side Project",
-    title: "일잘러 성향 테스트",
-    description: "실무 상황을 반영한 12가지 문항을 통해, 개인의 업무 스타일을 '크리에이터', '전략가' 등 8가지 페르소나로 분류하고 최적의 업무 환경을 제안합니다.",
-    status: "완성" as const,
-    tags: ["Next.js", "TypeScript", "html2canvas"],
-    path: "/work-type",
-    outputs: [
-      "8가지 업무 유형 상세 리포트", 
-      "강점·약점 기반의 커스터마이징 가이드", 
-      "개인별 최적의 업무 환경 추천"
-    ],
-    color: "violet",
-  },
-];
+import { projects } from "./data/projects";
 
 export default function Home() {
   return (
