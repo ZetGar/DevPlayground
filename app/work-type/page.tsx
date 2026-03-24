@@ -42,7 +42,7 @@ export default function WorkTypePage() {
     if (result) {
       router.replace(`?result=${result.code}`, { scroll: false });
     }
-  }, [result]);
+  }, [result, router]);
 
   const handleRetry = () => {
     reset();
