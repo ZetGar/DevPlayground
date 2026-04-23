@@ -9,6 +9,7 @@
 .apptop {
   position: fixed;
   top: 0;
+  z-index: 999;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -53,6 +54,7 @@
 }
 
 .card {
+  position: relative;
   background: white;
   border-radius: 10px;
   padding: 16px;
@@ -77,6 +79,12 @@
   justify-content: space-between;
   font-size: 13px;
   color: gray;
+}
+
+.cardBottom > div {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .banner {
@@ -137,6 +145,7 @@
 }
 
 .addBtn {
+  position: relative;
   width: 100%;
   padding: 16px;
   background: white;
@@ -220,7 +229,15 @@
   cursor: pointer;
 }
 
+.jobList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
 .jobList a{
+  /* width: 100%; */
+  min-width: calc(100% / 3 - 15px);
   text-decoration: none;
 }
 
@@ -272,7 +289,7 @@
 
 .options {
   position: absolute;
-  top: 110%;
+  top: 60%;
   left: 0;
   width: 100%;
   background: #fff;
@@ -312,4 +329,43 @@
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between; /* 왼쪽(타이틀)과 오른쪽(액션) 끝으로 정렬 */
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1; /* 제목이 길어지면 영역을 최대한 차지하게 함 */
+}
+
+.actionArea {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 삭제 버튼과 상태 배지 사이 간격 */
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.deleteBtn:hover {
+  color: #ef4444;
+}
+
+.guestBadge{
+  color: #64748b;
+  font-size: 14px;
 }

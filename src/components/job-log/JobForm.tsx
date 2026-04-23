@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { JobStage, STATUS_TEXT } from "@/types/jog-log/job";
+import { guestStorage } from "../../lib/job-log/domain/guestStorage";
 import styles from "../../app/(projects)/job-log/styles/jobLog.module.css";
 
 interface JobFormProps {
@@ -63,8 +64,16 @@ export default function JobForm({ userId, onSuccess, onClose }: JobFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!userId) return alert("로그인이 필요합니다.");
 
+    // 1. 게스트 모드 체크
+    if (!userId) {
+      guestStorage.saveJob(formData);
+      alert("테스트 데이터가 브라우저에 저장되었습니다!");
+      onSuccess(); 
+      return;
+    }
+
+    // 2. 로그인 사용자 등록 로직
     const { error } = await supabase.from("applications").insert([{
       ...formData,
       user_id: userId,
@@ -73,7 +82,6 @@ export default function JobForm({ userId, onSuccess, onClose }: JobFormProps) {
     if (error) {
       alert("등록 실패: " + error.message);
     } else {
-      // 💡 성공 시 부모의 onSuccess 호출 (성공 로직은 부모가 처리)
       onSuccess();
     }
   };
