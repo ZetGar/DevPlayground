@@ -87,7 +87,7 @@ export default function InterviewDetailPage({ params }: Props) {
       <main className={styles.contents}>
         {isGuestMode && (
           <div className={styles.guestBanner}>
-            ℹ️ 게스트 모드에서는 상세 수정 및 면접 기록 추가가 제한됩니다.
+            ℹ️ 본 기능은 포트폴리오 시연용입니다. 비회원 등록 시 AI 가이드는 일반적인 산업군 데이터를 바탕으로 생성되며, 브라우저 캐시 삭제 시 데이터가 사라질 수 있습니다.
           </div>
         )}
 

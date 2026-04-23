@@ -107,7 +107,7 @@ export default function JobLogClient({ user, isGuest }: JobLogClientProps) {
         <div>
           <h1>Job Log</h1>
           <div className={styles.topBtns}>
-            {!isGuest && <button onClick={handleLogout} className={styles.logoutBtn}>로그아웃</button>}
+            <button onClick={handleLogout} className={styles.logoutBtn}>{isGuest ? "체험 모드 종료" : "로그아웃"}</button>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function JobLogClient({ user, isGuest }: JobLogClientProps) {
       <div className={styles.contents}>
         {isGuest && (
           <div className={styles.guestBanner}>
-            <span>ℹ️ 현재 게스트 모드입니다. 작성하신 내용은 브라우저에 임시 저장되며, 로그인 시 안전하게 보관됩니다.</span>
+            <span>ℹ️ 본 기능은 포트폴리오 시연용입니다. 비회원 등록 시 AI 가이드는 일반적인 산업군 데이터를 바탕으로 생성되며, 브라우저 캐시 삭제 시 데이터가 사라질 수 있습니다.</span>
           </div>
         )}
 
