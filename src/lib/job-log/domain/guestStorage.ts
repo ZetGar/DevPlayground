@@ -28,40 +28,81 @@
 // };
 
 // src/lib/job-log/guestStorage.ts
-
+import { Job } from "@/types/jog-log/job";
 const GUEST_KEY = 'job_log_guest_data';
 
-export const guestStorage = {
-  // 1. 데이터 저장 (기존 배열 앞에 추가)
-  saveJob: (formData: any) => {
-    const existingData = guestStorage.getJobs();
-    const newJob = {
-      ...formData,
-      id: `guest-${Date.now()}`, // 고유 ID 생성
-      created_at: new Date().toISOString()
-    };
+// export const guestStorage = {
+//   // 1. 데이터 저장 (기존 배열 앞에 추가)
+//   saveJob: (formData: any) => {
+//     const existingData = guestStorage.getJobs();
+//     const newJob = {
+//       ...formData,
+//       id: `guest-${Date.now()}`, // 고유 ID 생성
+//       created_at: new Date().toISOString()
+//     };
     
-    const updated = [newJob, ...existingData];
-    localStorage.setItem(GUEST_KEY, JSON.stringify(updated));
-  },
+//     const updated = [newJob, ...existingData];
+//     localStorage.setItem(GUEST_KEY, JSON.stringify(updated));
+//   },
 
-  // 2. 데이터 불러오기
-  getJobs: (): any[] => {
-    if (typeof window === 'undefined') return [];
-    const data = localStorage.getItem(GUEST_KEY);
+//   // 2. 데이터 불러오기
+//   getJobs: (): any[] => {
+//     if (typeof window === 'undefined') return [];
+//     const data = localStorage.getItem(GUEST_KEY);
+//     return data ? JSON.parse(data) : [];
+//   },
+
+//   // 3. 특정 항목 삭제 (ID 기준)
+//   deleteJob: (id: string) => {
+//     const existingData = guestStorage.getJobs();
+//     // 해당 ID를 제외한 나머지만 필터링
+//     const updated = existingData.filter(job => job.id !== id);
+//     localStorage.setItem(GUEST_KEY, JSON.stringify(updated));
+//   },
+
+//   // 4. 모든 게스트 데이터 초기화
+//   clearJobs: () => {
+//     localStorage.removeItem(GUEST_KEY);
+//   }
+// };
+// src/lib/job-log/domain/guestStorage.ts
+
+export const guestStorage = {
+  getJobs: (): Job[] => {
+    if (typeof window === "undefined") return [];
+    const data = localStorage.getItem("guest-jobs");
     return data ? JSON.parse(data) : [];
   },
 
-  // 3. 특정 항목 삭제 (ID 기준)
-  deleteJob: (id: string) => {
-    const existingData = guestStorage.getJobs();
-    // 해당 ID를 제외한 나머지만 필터링
-    const updated = existingData.filter(job => job.id !== id);
-    localStorage.setItem(GUEST_KEY, JSON.stringify(updated));
+  addJob: (job: Job) => {
+    const jobs = guestStorage.getJobs();
+    localStorage.setItem("guest-jobs", JSON.stringify([job, ...jobs]));
   },
 
-  // 4. 모든 게스트 데이터 초기화
-  clearJobs: () => {
-    localStorage.removeItem(GUEST_KEY);
+  // 💡 삭제 로직 추가 (JobLogClient 에러 해결)
+  deleteJob: (id: string) => {
+    const jobs = guestStorage.getJobs();
+    const filtered = jobs.filter(j => j.id !== id);
+    localStorage.setItem("guest-jobs", JSON.stringify(filtered));
+  },
+
+  // 💡 체크리스트 상태 업데이트 로직
+  updateAiStep: (jobId: string, stepId: number, isDone: boolean) => {
+    const jobs = guestStorage.getJobs();
+    const updated = jobs.map(job => {
+      if (job.id === jobId && job.ai_guide) {
+        return {
+          ...job,
+          ai_guide: {
+            ...job.ai_guide,
+            checkpoints: job.ai_guide.checkpoints.map(cp => 
+              cp.id === stepId ? { ...cp, done: isDone } : cp
+            )
+          }
+        };
+      }
+      return job;
+    });
+    localStorage.setItem("guest-jobs", JSON.stringify(updated));
   }
 };

@@ -11,6 +11,7 @@ export interface Job {
   job_title: string;    // 포지션
   stage: JobStage;      // 상태 (서류, 면접 등)
   applied_at: string;   // 지원 날짜
+  ai_guide?: AiGuide;  // AI 면접 가이드
   domain: string;       // 도메인
   job_url?: string;     // 공고 URL
   company_size: string; // 기업 규모
@@ -43,3 +44,21 @@ export const STATUS_CLASS_MAP = {
   '최종합격': 'passed',
   '불합격': 'rejected',
 } as const;
+
+export interface AiGuide {
+  checkpoints: {
+    id: number;
+    task: string;
+    done: boolean;
+  }[];
+  expected_questions: string[];
+  tip: string;
+  strategies?: InterviewStrategy[]; 
+}
+
+export interface InterviewStrategy {
+  scenario: string;
+  question: string;
+  intent: string;
+  best_answer_tip: string;
+}

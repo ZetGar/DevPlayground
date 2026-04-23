@@ -1,5 +1,60 @@
 import { Application, AIAnalysisResult } from "../types";
 
+export const generateAiGuide = (company: string, jobTitle: string, domain: string) => {
+  const lowerDomain = domain.toLowerCase();
+  
+  // 1. 기본 분석 데이터 설정
+  const baseGuide = {
+    checkpoints: [
+      { id: 1, task: `${company}의 최근 1년 내 기술 블로그 및 보도자료 분석`, done: false },
+      { id: 2, task: `${jobTitle} 공고 내 핵심 기술 스택 관련 프로젝트 리마인드`, done: false },
+      { id: 3, task: `${domain} 산업군의 시장 점유율 및 경쟁사 서비스 비교`, done: false },
+    ],
+    expected_questions: [
+      `왜 수많은 회사 중 ${company}여야만 하나요?`,
+      `${jobTitle}로서 본인이 기여할 수 있는 가장 큰 기술적 가치는 무엇인가요?`,
+    ],
+    tip: `${company}는 기술적 완성도와 비즈니스 임팩트를 중시합니다. 본인의 결과물이 '사용자'에게 어떤 변화를 주었는지 강조하세요.`,
+  };
+
+  // 2. 도메인별 맞춤 전략 (유연한 키워드 매칭)
+  let selectedStrategies = [];
+
+  const isFintech = lowerDomain.includes("fin") || lowerDomain.includes("핀테크") || lowerDomain.includes("금융");
+  const isEcommerce = lowerDomain.includes("com") || lowerDomain.includes("커머스") || lowerDomain.includes("쇼핑");
+
+  if (isFintech) {
+    selectedStrategies = [
+      {
+        scenario: "보안 및 무결성",
+        question: "사용자의 잔액 정보를 업데이트할 때 발생할 수 있는 레이스 컨디션을 어떻게 방지하겠습니까?",
+        intent: "금융 서비스의 핵심인 정합성 유지 능력 확인",
+        best_answer_tip: "DB 트랜잭션 격리 수준이나 낙관적 락(Optimistic Lock) 개념을 언급하세요."
+      }
+    ];
+  } else if (isEcommerce) {
+    selectedStrategies = [
+      {
+        scenario: "성능 최적화",
+        question: "수천 개의 상품 이미지가 포함된 메인 페이지의 로딩 속도를 어떻게 획기적으로 개선하시겠습니까?",
+        intent: "이미지 최적화 및 렌더링 효율 측정",
+        best_answer_tip: "WebP 변환, CDN 활용, 가상 리스트 전략을 답변하세요."
+      }
+    ];
+  } else {
+    selectedStrategies = [
+      {
+        scenario: "기본 역량",
+        question: `${company}의 비즈니스 모델에서 ${jobTitle}이 해결해야 할 가장 큰 과제는 무엇일까요?`,
+        intent: "관심도 및 비즈니스 이해도 검증",
+        best_answer_tip: "회사의 수익 구조와 기술의 연결고리를 설명하세요."
+      }
+    ];
+  }
+
+  return { ...baseGuide, strategies: selectedStrategies };
+};
+
 // 프롬프트 구성
 export function buildAnalysisPrompt(applications: Application[]): string {
   const passed = applications.filter((a) => a.stage === "합격");
