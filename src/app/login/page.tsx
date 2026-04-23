@@ -40,6 +40,9 @@ export default function LoginPage() {
         setLoading(false);
         return;
       }
+      localStorage.removeItem("guest");
+      document.cookie = "guest=; path=/; max-age=0";
+
       router.push("/job-log");
       router.refresh();
     }
@@ -138,6 +141,16 @@ export default function LoginPage() {
             }}
           >
             {isSignUp ? "이미 계정이 있어요 → 로그인" : "계정이 없어요 → 회원가입"}
+          </button>
+
+          <button
+            className={styles.toggle}
+            onClick={() => {
+              document.cookie = "guest=true; path=/";
+              router.push("/job-log");
+            }}
+          >
+            둘러보기 (비회원)
           </button>
         </div>
       </div>

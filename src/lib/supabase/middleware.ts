@@ -26,9 +26,10 @@ export async function updateSession(request: NextRequest) {
   );
 
   const { data: { user } } = await supabase.auth.getUser();
-
+  const isGuest = request.cookies.get("guest");
+  
   // 로그인 안 된 상태에서 /job-log 접근 시 /login으로 리다이렉트
-  if (!user && request.nextUrl.pathname.startsWith("/job-log")) {
+  if (!user && !isGuest && request.nextUrl.pathname.startsWith("/job-log")) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);

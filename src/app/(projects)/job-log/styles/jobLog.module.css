@@ -1,0 +1,315 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f7fb;
+  min-height: 100vh;
+}
+
+.apptop {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  background-color: rgb(0, 98, 255);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.apptop > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 24px;;
+}
+
+.contents {
+  margin-top: 80px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.apptop h1 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.apptop button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.apptop button:hover {
+  text-decoration: underline;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cardBottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: gray;
+}
+
+.banner {
+  background: #fff3cd;
+  color: #856404;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+/* [서류] 단계 - 파란색 계열 */
+.applied {
+  background: #e7f1ff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* [면접] 단계 - 보라색 계열 (진행 중임을 강조) */
+.interview {
+  background: #f3e8ff;
+  color: #8b5cf6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* [과제] 단계 - 주황색 계열 (액션이 필요함) */
+.task {
+  background: #fff7ed;
+  color: #f97316;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* [합격] 단계 - 초록색 계열 */
+.passed {
+  background: #e6f4ea;
+  color: #28a745;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* [불합격] 단계 - 빨간색 계열 */
+.rejected {
+  background: #fdecea;
+  color: #dc3545;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.addBtn {
+  width: 100%;
+  padding: 16px;
+  background: white;
+  border: 2px dashed #0062ff;
+  color: #0062ff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+}
+
+.addBtn:hover {
+  background: #f0f6ff;
+}
+
+.formCard {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+  border: 1px solid #e2e8f0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputGroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.inputGroup input, .inputGroup select {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.inputGroup input:focus {
+  border-color: #0062ff;
+}
+
+.formBtns {
+  display: flex;
+  gap: 10px;
+}
+
+.submitBtn {
+  flex: 2;
+  background: #0062ff;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.jobList a{
+  text-decoration: none;
+}
+
+.guestBanner {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addBtnGuest {
+  opacity: 0.7;
+  /* 기존 addBtn 스타일을 상속받거나 함께 사용 */
+}
+
+.empty, .loading{
+  text-align: center;
+  color: #64748b;
+  margin-top: 40px;
+}
+
+/* 커스텀 셀렉트 스타일 */
+.customSelect {
+  position: relative;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.selectTrigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.options {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  padding: 6px 0;
+  list-style: none;
+}
+
+.options li {
+  padding: 10px 14px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.options li:hover {
+  background: #f1f5f9;
+}
+
+.options li.selected {
+  color: #2563eb;
+  font-weight: 600;
+  background: #eff6ff;
+}
+
+/* URL 분석 로딩 텍스트 */
+.loadingText {
+  font-size: 12px;
+  color: #2563eb;
+  margin-left: 8px;
+  font-weight: normal;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
