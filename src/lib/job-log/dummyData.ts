@@ -36,6 +36,16 @@ export const dummyData: Job[] = [
           intent: "디버깅 프로세스와 성능 지표 분석 능력 측정",
           best_answer_tip: "Lighthouse, 실시간 유저 모니터링(RUM) 데이터를 언급하고, 최근 배포된 PR을 역추적하여 리소스 병목 지점을 찾는 과정을 논리적으로 설명하세요."
         }
+      ],
+      user_questions: [
+        {
+          "id": "uuid-or-timestamp",
+          "question": "본인의 강점은?",
+          "answer": "데이터 기반으로...",
+          "memo": "면접관이 꼬리질문할 가능성 있음",
+          "created_at": "2026-04-26T13:50:00Z",
+          "updated_at": "2026-04-26T13:50:00Z"
+        }
       ]
     }
   },
@@ -65,6 +75,16 @@ export const dummyData: Job[] = [
           question: "수만 개의 영상 썸네일을 목록에 렌더링할 때 발생하는 버벅임을 어떻게 해결하시겠습니까?",
           intent: "대량의 데이터 렌더링 성능 최적화 경험 확인",
           best_answer_tip: "Windowing 기술(react-window 등)을 통한 DOM 노드 최소화와 이미지 레이지 로딩, Web Worker를 이용한 데이터 전처리 방안을 답변하세요."
+        }
+      ],
+      user_questions: [
+        {
+          "id": "uuid-or-timestamp",
+          "question": "본인의 강점은?",
+          "answer": "데이터 기반으로...",
+          "memo": "면접관이 꼬리질문할 가능성 있음",
+          "created_at": "2026-04-26T13:50:00Z",
+          "updated_at": "2026-04-26T13:50:00Z"
         }
       ]
     }

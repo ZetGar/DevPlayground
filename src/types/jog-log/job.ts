@@ -17,6 +17,7 @@ export interface Job {
   company_size: string; // 기업 규모
   url?: string;         // 공고 링크
   created_at?: string;
+  user_questions?: UserQuestion[];
 }
 
 // 3. UI에 표시할 텍스트 매핑
@@ -62,3 +63,12 @@ export interface InterviewStrategy {
   intent: string;
   best_answer_tip: string;
 }
+
+export type UserQuestion = {
+  id: string;
+  question: string;
+  answer: string;
+  memo?: string;
+  created_at: string;
+  updated_at: string;
+};

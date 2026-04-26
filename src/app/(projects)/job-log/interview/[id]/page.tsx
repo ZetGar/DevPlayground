@@ -7,6 +7,8 @@ import { guestStorage } from "./../../../../../lib/job-log/domain/guestStorage";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../../styles/jobLog.module.css";
 import { Job, STATUS_CLASS_MAP } from "@/types/jog-log/job";
+import UserQASection from "./UserQASection";
+import EditableJobInfo from "./EditableJobInfo";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -93,14 +95,7 @@ export default function InterviewDetailPage({ params }: Props) {
 
         {/* 1. 기본 정보 카드 */}
         <div className={styles.card} style={{ cursor: "default", marginBottom: "24px" }}>
-          <div className={styles.cardTop}>
-            <strong style={{ fontSize: "20px" }}>{job.job_title}</strong>
-            <span className={styles[statusClass]}>{job.stage}</span>
-          </div>
-          <div className={styles.cardBottom} style={{ marginTop: "12px" }}>
-            <span>도메인: {job.domain || "미지정"}</span>
-            <span>지원일: {job.applied_at}</span>
-          </div>
+          <EditableJobInfo job={job} />
         </div>
 
         {job.ai_guide ? (
@@ -112,12 +107,15 @@ export default function InterviewDetailPage({ params }: Props) {
               <div style={{ marginBottom: "24px" }}>
                 <p style={{ fontWeight: "bold", marginBottom: "12px" }}>✅ 면접 전 체크리스트</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {job.ai_guide.checkpoints.map((cp: any) => (
+                  {job.ai_guide?.checkpoints?.length ? 
+                  (job.ai_guide.checkpoints.map((cp: any) => (
                     <label key={cp.id} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px", backgroundColor: "#f8fafc", borderRadius: "8px", fontSize: "14px", cursor: "pointer" }}>
                       <input type="checkbox" checked={cp.done} onChange={(e) => handleCheckChange(cp.id, e.target.checked)} />
                       <span>{cp.task}</span>
                     </label>
-                  ))}
+                  ))):(
+                    <p style={{ color: "#888" }}>아직 AI 가이드가 생성되지 않았습니다.</p>
+                  )}
                 </div>
               </div>
 
@@ -168,6 +166,13 @@ export default function InterviewDetailPage({ params }: Props) {
             <p>이 공고에 대한 AI 분석 정보가 없습니다.</p>
           </div>
         )}
+
+        <div className={styles.formCard}>
+          <UserQASection
+            applicationId={job.id}
+            initialQuestions={job.ai_guide?.user_questions ?? []}
+          />
+        </div>
       </main>
     </div>
   );
